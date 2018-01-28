@@ -10,14 +10,14 @@ dirc = "./data/";
 while True:
     try:
         filename = input(" data file to read: ");
-        print dirc+filename;
+        print(dirc+filename);
         f = open(dirc+filename);
         for line in f:
             words = line.split();
             xy_lst.append(list(map(float, words)));
         f.close();
     except IOError:
-        print IOError;
+        print(IOError);
         break;
 
 xy = np.array(xy_lst);
@@ -46,7 +46,7 @@ batch_size = 200;
 nn = NN(Layers, alpha, reg);
 #nn.load('config');
 
-n_batch = m_train / batch_size;
+n_batch = m_train // batch_size;
 for epoch in range(0, maxIteration):
     for i in range(0, n_batch):
         start = i* batch_size;
