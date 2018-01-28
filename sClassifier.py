@@ -1,20 +1,20 @@
 import numpy as np;
 import sys;
-sys.path.append('..\\NeuralNetwork');
+sys.path.append('../NeuralNetwork');
 from NN import NN as NN;
 
 # fetch data
 xy_lst = [];
 
-dirc = ".\\data\\";
+dirc = "./data/";
 while True:
     try:
-        filename = raw_input(" data file to read: ");
+        filename = input(" data file to read: ");
         print dirc+filename;
         f = open(dirc+filename);
         for line in f:
             words = line.split();
-            xy_lst.append(map(float, words));
+            xy_lst.append(list(map(float, words)));
         f.close();
     except IOError:
         print IOError;
@@ -26,8 +26,8 @@ np.random.shuffle(xy);
 x = xy.transpose()[:-1,:];
 y = xy.transpose()[[-1],:];
 
-print " x shape: ", x.shape;
-print " y shape: ", y.shape;
+print(" x shape: ", x.shape);
+print(" y shape: ", y.shape);
 
 # train tuning
 m = y.shape[1];
@@ -52,14 +52,14 @@ for epoch in range(0, maxIteration):
         start = i* batch_size;
         end = np.minimum(start+batch_size, m_train);
         nn.train_once(x_train[:,start:end], y_train[:,start:end]);
-    print epoch, " train cost J: ", np.asscalar(nn.J(nn.predict(x), y));
-    print epoch, " test cost J: ", np.asscalar(nn.J(nn.predict(x_val), y_val));
+    print(epoch, " train cost J: ", np.asscalar(nn.J(nn.predict(x), y)));
+    print(epoch, " test cost J: ", np.asscalar(nn.J(nn.predict(x_val), y_val)));
 
 nn.test(x_val, y_val);
-print " accuracy: ", nn.accuracy;
-print " precision: ", nn.precision;
-print " recall: ", nn.recall;
-print " fScore: ", nn.fscore;
+print(" accuracy: ", nn.accuracy);
+print(" precision: ", nn.precision);
+print(" recall: ", nn.recall);
+print(" fScore: ", nn.fscore);
 
 nn.save('config');
 #nn.load('config');
