@@ -43,8 +43,8 @@ alpha = 0.03;
 reg = 0.0;
 batch_size = 200;
 
-nn = NN(Layers, alpha, reg);
-#nn.load('config');
+# nn = NN(Layers, alpha, reg);
+nn.load('config');
 
 n_batch = m_train // batch_size;
 for epoch in range(0, maxIteration):
