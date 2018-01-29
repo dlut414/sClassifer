@@ -38,7 +38,7 @@ x_val = x[:,m_train:];
 y_val = y[:,m_train:];
 
 Layers = (17, 8, 8, 4, 1);
-maxIteration = 55555000;
+maxIteration = 5000;
 alpha = 0.03;
 reg = 0.0;
 batch_size = 200;
